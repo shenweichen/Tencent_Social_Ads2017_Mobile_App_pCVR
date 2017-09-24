@@ -19,7 +19,7 @@ def gen_Click_stats(data,col):
 
     clicks_user_day = pd.DataFrame(data.groupby(['userID', col])['clickTime'].count(), )
     clicks_user_day.rename(columns={'clickTime': col+'_m'}, inplace=True)
-    clicks_user_day.reset_index(inplace=1)
+    clicks_user_day.reset_index(inplace=True)
     clicks_user_day_m = pd.DataFrame(clicks_user_day.groupby(['userID'])[col+'_m'].mean()).rename(columns={col+'_m':col+'_mean'}).reset_index()
     clicks_user_day_ma = pd.DataFrame(clicks_user_day.groupby(['userID'])[col+'_m'].max()).rename(columns={col+'_m':col+'_max'}).reset_index()
     clicks_user_day_mi = pd.DataFrame(clicks_user_day.groupby(['userID'])[col+'_m'].min()).rename(columns={col+'_m':col+'_min'}).reset_index()
